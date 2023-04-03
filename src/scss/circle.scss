@@ -1,0 +1,33 @@
+.sushi-table {
+  --d: 4.5rem;
+  --rel: 1;
+  --r: calc(.5*(1 + var(--rel))*var(--d)/var(--tan));
+  --s: calc(2*var(--r) + var(--d));
+  position: relative;
+  width: var(--s); height: var(--s);
+  //width: fit-content;
+  margin: 0 auto;
+}
+
+.sushi-table .seat {
+  position: absolute;
+  top: 50%; left: 50%;
+  margin: calc(-.5*var(--d));
+  width: var(--d); height: var(--d);
+  --az: calc(var(--i)*1turn/var(--m));
+  transform:
+          rotate(var(--az))
+          translate(var(--r))
+          rotate(calc(-1*var(--az)));
+
+
+  border-radius: 50%;
+  border: 1px solid black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  font-weight: bold;
+}

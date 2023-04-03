@@ -1,0 +1,23 @@
+button{
+
+  background: var(--gr2);
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  transition: all .1s ease;
+
+  &:hover{
+    background: var(--gr3);
+    color: black;
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+}
+
+input#group-size {
+  padding: 0.4rem 1rem;
+}

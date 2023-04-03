@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sushi Restaurant</title>
+  <link href="styles.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div aria-hidden="true" class="modal micromodal-slide" id="modal-1">
+  <!--  data-micromodal-close-->
+  <div class="modal__overlay" tabindex="-1">
+    <div aria-labelledby="modal-1-title" aria-modal="true" class="modal__container" role="dialog">
+      <header class="modal__header">
+        <div class="modal__title" id="modal-1-title">
+          Anzahl Sitzplätze (Min. 4 bis Max. 25)
+        </div>
+        <!--<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>-->
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <label for="restaurant-seats">Bitte geben Sie die Anzahl der im Restaurant verfügbaren Sitzplätze an:</label>
+        <input id="restaurant-seats" name="restaurant-seats" type="number" value="12">
+      </main>
+      <footer class="modal__footer">
+        <button aria-label="Close this dialog window" class="modal__btn modal__btn-primary"
+                data-micromodal-close>Weiter
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div aria-hidden="true" class="modal micromodal-slide" id="modal-2">
+  <!--  data-micromodal-close-->
+  <div class="modal__overlay" tabindex="-1">
+    <div aria-labelledby="modal-1-title" aria-modal="true" class="modal__container" role="dialog">
+      <header class="modal__header">
+        <div class="modal__title" id="modal-2-title"></div>
+        <!--<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>-->
+      </header>
+      <main class="modal__content" id="modal-2-content"></main>
+      <footer class="modal__footer">
+        <button aria-label="Close this dialog window" class="modal__btn modal__btn-primary"
+                data-micromodal-close>Weiter
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+
+  <div class="sushi-reservation">
+    <label for="group-size">Gruppengröße</label>
+    <input id="group-size" name="group-size" type="number" value="2">
+
+    <button id="sushi-reservation__add">Hinzufügen</button>
+<!--    <button id="sushi-reservation__update">Update</button>-->
+
+    <div class="info">
+      <h3>- Auf farbige Gruppe klicken, um diese zu löschen</h3>
+    </div>
+  </div>
+
+
+  <div class="sushi-table"></div>
+
+
+</div>
+
+
+<script src="bundle.js"></script>
+</body>
+</html>
