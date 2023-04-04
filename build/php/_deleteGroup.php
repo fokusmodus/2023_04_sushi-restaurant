@@ -31,18 +31,53 @@ function deleteGroup($input) {
     // - the table is a circle
     // - if the first and the last key of the group array have empty seats, they will do one empty group
 
-    $seatSum = $json->groups[0]->groupSize + $json->groups[array_key_last($json->groups)]->groupSize;
-    array_pop($json->groups);
-    //array_pop($json->groupEmptyPosition);
+    $seatSum    = 0;
+    $unsetter = [];
 
-    $nullGroup       = (object)[
+
+    if (!$json->groups[0]->occupied) {
+      $seatSum += $json->groups[0]->groupSize;
+      array_push($unsetter, 0);
+    }
+    if (!$json->groups[1]->occupied) {
+      $seatSum += $json->groups[1]->groupSize;
+      array_push($unsetter, 1);
+    }
+
+    if (count($json->groups) >= 3 && !$json->groups[array_key_last($json->groups)]->occupied) {
+      $seatSum += $json->groups[array_key_last($json->groups)]->groupSize;
+      array_push($unsetter, array_key_last($json->groups));
+    }
+    if (count($json->groups) >= 4 && !$json->groups[array_key_last($json->groups) - 1]->occupied) {
+      $seatSum += $json->groups[array_key_last($json->groups) - 1]->groupSize;
+      array_push($unsetter, array_key_last($json->groups) - 1);
+    }
+
+
+    foreach ($unsetter as $item) {
+      unset($json->groups[$item]);
+    }
+
+
+    $nullGroup = (object)[
       "groupSize"  => $seatSum,
       "groupColor" => '#ffffff',
       "occupied"   => FALSE,
     ];
-    $json->groups[0] = $nullGroup;
 
+    $json->groups[0] = $nullGroup;
+    ksort($json->groups);
+
+
+
+    $json->groups = array_values($json->groups);
     $json = reSortEmptyPositions($json);
+
+
+
+    file_put_contents('database.json', json_encode($json));
+    echo json_encode($json->groups);
+    return TRUE;
   }
 
 
